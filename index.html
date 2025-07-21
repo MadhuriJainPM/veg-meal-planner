@@ -1,300 +1,284 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegetarian Meal Planner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .new-item {
+            animation: fadeIn 0.3s ease-out;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .recipe-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .recipe-card.open .recipe-details {
+            max-height: 1000px;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    </style>
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Vegetarian Meal Planner&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fadeIn {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>from { opacity: 0; transform: translateY(-10px); }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>to { opacity: 1; transform: translateY(0); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.new-item {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 0.3s ease-out;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.custom-scrollbar::-webkit-scrollbar { width: 8px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.recipe-details {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-height: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-bottom: 0;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.recipe-card.open .recipe-details {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>max-height: 1000px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-top: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>padding-bottom: 1rem;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="bg-slate-50 text-slate-800"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="container mx-auto p-4 md:p-8 max-w-4xl"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;header class="text-center mb-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-4xl md:text-5xl font-bold text-emerald-600"&gt;Vegetarian Meal Planner&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-slate-500 mt-2"&gt;Your AI-powered guide to healthy, delicious meals.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="grid grid-cols-1 md:grid-cols-2 gap-8"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Left Column: Kitchen &amp; Goals --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="space-y-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- My Kitchen Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;section class="bg-white p-6 rounded-2xl shadow-md"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-2xl font-semibold mb-4 text-slate-700"&gt;My Kitchen&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm text-slate-500 mb-2"&gt;Note: This list will reset if you refresh the page.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex gap-2 mb-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input type="text" id="ingredient-input" class="flex-grow p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none transition" placeholder="e.g., Lentils, Spinach..."&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button id="add-ingredient-btn" class="bg-emerald-500 text-white px-6 py-3 font-semibold rounded-lg hover:bg-emerald-600 transition-all shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50"&gt;Add&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ul id="ingredient-list" class="space-y-2 h-48 overflow-y-auto custom-scrollbar pr-2"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;!-- Ingredients will be dynamically added here --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Nutritional Goals Section --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;section class="bg-white p-6 rounded-2xl shadow-md"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-2xl font-semibold mb-4 text-slate-700"&gt;Nutritional Goals&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="nutritional-goals" class="space-y-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="flex items-center space-x-3 text-lg text-slate-600"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="checkbox" value="High Protein" class="h-5 w-5 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;High Protein&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="flex items-center space-x-3 text-lg text-slate-600"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="checkbox" value="High Fiber" class="h-5 w-5 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;High Fiber&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label class="flex items-center space-x-3 text-lg text-slate-600"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="checkbox" value="High Calcium" class="h-5 w-5 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;High Calcium&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Right Column: Meal Plan --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex flex-col"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;section class="bg-white p-6 rounded-2xl shadow-md flex-grow flex flex-col"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-2xl font-semibold mb-4 text-slate-700"&gt;Recipe Suggestions&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="generate-plan-btn" class="w-full bg-indigo-600 text-white py-3 px-6 font-semibold rounded-lg hover:bg-indigo-700 transition-all shadow hover:shadow-lg mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"&gt;Generate Recipes&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="meal-plan-display" class="h-full overflow-y-auto custom-scrollbar pr-2 flex-grow"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-slate-500 text-center mt-4"&gt;Your generated recipes will appear here.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- DOM ELEMENT REFERENCES ---</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const ingredientInput = document.getElementById('ingredient-input');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const addIngredientBtn = document.getElementById('add-ingredient-btn');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const ingredientList = document.getElementById('ingredient-list');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const generatePlanBtn = document.getElementById('generate-plan-btn');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const mealPlanDisplay = document.getElementById('meal-plan-display');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const nutritionalGoalsContainer = document.getElementById('nutritional-goals');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- APP STATE (NO FIREBASE) ---</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let ingredients = [];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- UI RENDERING &amp; EVENT HANDLERS ---</p>
-<p class="p1"><span class="Apple-converted-space">        </span>function renderIngredients() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>ingredientList.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (ingredients.length === 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>ingredientList.innerHTML = `&lt;li class="text-slate-400 italic"&gt;Your kitchen is empty.&lt;/li&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">            </span>ingredients.forEach((ingredient, index) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const li = document.createElement('li');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>li.className = 'new-item flex justify-between items-center bg-slate-100 p-2 rounded-lg';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>li.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span&gt;${ingredient}&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button data-index="${index}" class="remove-btn text-red-500 hover:text-red-700 font-bold text-xl"&gt;&amp;times;&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>ingredientList.appendChild(li);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function handleAddIngredient() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const ingredientName = ingredientInput.value.trim();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (ingredientName &amp;&amp; !ingredients.includes(ingredientName)) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>ingredients.push(ingredientName);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>ingredientInput.value = '';</p>
-<p class="p1"><span class="Apple-converted-space">                </span>renderIngredients();</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function handleRemoveIngredient(index) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>ingredients.splice(index, 1);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>renderIngredients();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>function renderMealPlanCards(data) {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>mealPlanDisplay.innerHTML = '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (!data || !data.recipes || data.recipes.length === 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>mealPlanDisplay.innerHTML = `&lt;p class="text-orange-600"&gt;Sorry, I couldn't generate recipes. Try different ingredients!&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const cardsContainer = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>cardsContainer.className = 'space-y-3';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>data.recipes.forEach(recipe =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const card = document.createElement('div');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>card.className = 'new-item recipe-card bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 transition-all';</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const ingredientsHtml = recipe.ingredients_list.map(ing =&gt; `&lt;li&gt;${ing}&lt;/li&gt;`).join('');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const instructionsHtml = recipe.instructions.replace(/\n/g, '&lt;br&gt;');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const searchQuery = encodeURIComponent(`${recipe.recipe_name} vegetarian recipe`);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>card.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="recipe-summary p-4 cursor-pointer flex justify-between items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-bold text-slate-800"&gt;${recipe.recipe_name}&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="recipe-details px-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="prose prose-sm max-w-none"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h4 class="font-semibold"&gt;Ingredients:&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;ul class="list-disc list-inside"&gt;${ingredientsHtml}&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h4 class="font-semibold mt-4"&gt;Instructions:&lt;/h4&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p&gt;${instructionsHtml}&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;a href="https://www.google.com/search?q=${searchQuery}" target="_blank" rel="noopener noreferrer" class="mt-4 mb-4 inline-block bg-slate-100 text-slate-600 px-3 py-2 font-semibold rounded-lg hover:bg-slate-200 transition-all text-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>Search for this recipe</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>cardsContainer.appendChild(card);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">            </span>mealPlanDisplay.appendChild(cardsContainer);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- GEMINI API CALL ---</p>
-<p class="p1"><span class="Apple-converted-space">        </span>async function generateMealPlan() {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (ingredients.length === 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>mealPlanDisplay.innerHTML = `&lt;p class="text-orange-600"&gt;Please add some ingredients first!&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>// *** IMPORTANT: PASTE YOUR API KEY HERE ***</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const apiKey = "AIzaSyA4XE8Gb7oxY9dKFbo5kQJldPFYG3n1QFI";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (apiKey === "AIzaSyA4XE8Gb7oxY9dKFbo5kQJldPFYG3n1QFI") {</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>mealPlanDisplay.innerHTML = `&lt;p class="text-red-600 font-bold"&gt;ERROR: You must add your Gemini API key to the code before deploying.&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">                 </span>return;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const selectedGoals = Array.from(nutritionalGoalsContainer.querySelectorAll('input:checked')).map(cb =&gt; cb.value).join(', ');</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>mealPlanDisplay.innerHTML = `</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex items-center justify-center h-full"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="animate-spin h-8 w-8 text-indigo-600 mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"&gt;&lt;circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"&gt;&lt;/circle&gt;&lt;path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-slate-500 font-medium"&gt;Generating recipes...&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>generatePlanBtn.disabled = true;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>generatePlanBtn.classList.add('opacity-50', 'cursor-not-allowed');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const goalText = selectedGoals ? `that is ${selectedGoals}` : '';</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const prompt = `Suggest three distinct pure vegetarian recipes ${goalText} that feature the key ingredients: ${ingredients.join(', ')}. Assume common kitchen staples are available. For each recipe, provide the name, a complete list of ingredients, and step-by-step instructions. Return this data as a valid JSON object only, with the exact structure: { "recipes": [ { "recipe_name": "...", "ingredients_list": ["...", "..."], "instructions": "1. First step..." } ] }`;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>const payload = {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>contents: [{ role: "user", parts: [{ text: prompt }] }],</p>
-<p class="p1"><span class="Apple-converted-space">                </span>generationConfig: { responseMimeType: "application/json" }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>};</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const response = await fetch(apiUrl, {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>method: 'POST',</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>body: JSON.stringify(payload)</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (!response.ok) throw new Error(`API request failed: ${response.statusText}`);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>const result = await response.json();</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>if (result.candidates &amp;&amp; result.candidates.length &gt; 0) {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const rawText = result.candidates[0].content.parts[0].text;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const startIndex = rawText.indexOf('{');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const endIndex = rawText.lastIndexOf('}');</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (startIndex === -1 || endIndex === -1) throw new Error("A valid JSON object was not found.");</p>
-<p class="p2"><span class="Apple-converted-space">                    </span></p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const jsonText = rawText.substring(startIndex, endIndex + 1);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>const data = JSON.parse(jsonText);</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>renderMealPlanCards(data);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>throw new Error("No content received from API.");</p>
-<p class="p1"><span class="Apple-converted-space">                </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>} catch (error) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>console.error("Error calling Gemini API or parsing JSON:", error);</p>
-<p class="p1"><span class="Apple-converted-space">                </span>mealPlanDisplay.innerHTML = `&lt;p class="text-red-600"&gt;Sorry, something went wrong. Please try again. Error: ${error.message}&lt;/p&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>} finally {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>generatePlanBtn.disabled = false;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>generatePlanBtn.classList.remove('opacity-50', 'cursor-not-allowed');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// --- EVENT LISTENERS ---</p>
-<p class="p1"><span class="Apple-converted-space">        </span>addIngredientBtn.addEventListener('click', handleAddIngredient);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ingredientInput.addEventListener('keypress', (e) =&gt; e.key === 'Enter' &amp;&amp; handleAddIngredient());</p>
-<p class="p1"><span class="Apple-converted-space">        </span>ingredientList.addEventListener('click', (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (e.target.classList.contains('remove-btn')) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>handleRemoveIngredient(parseInt(e.target.dataset.index, 10));</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>generatePlanBtn.addEventListener('click', generateMealPlan);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>mealPlanDisplay.addEventListener('click', (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const summary = e.target.closest('.recipe-summary');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (summary) {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const card = summary.closest('.recipe-card');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>document.querySelectorAll('.recipe-card.open').forEach(openCard =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (openCard !== card) {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>openCard.classList.remove('open');</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>openCard.querySelector('svg').classList.remove('rotate-180');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p1"><span class="Apple-converted-space">                </span>card.classList.toggle('open');</p>
-<p class="p1"><span class="Apple-converted-space">                </span>card.querySelector('svg').classList.toggle('rotate-180');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Initial render of the empty kitchen</p>
-<p class="p1"><span class="Apple-converted-space">        </span>renderIngredients();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-emerald-600">Vegetarian Meal Planner</h1>
+            <p class="text-slate-500 mt-2">Your AI-powered guide to healthy, delicious meals.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Left Column: Kitchen & Goals -->
+            <div class="space-y-8">
+                <!-- My Kitchen Section -->
+                <section class="bg-white p-6 rounded-2xl shadow-md">
+                    <h2 class="text-2xl font-semibold mb-4 text-slate-700">My Kitchen</h2>
+                    <p class="text-sm text-slate-500 mb-2">Note: This list will reset if you refresh the page.</p>
+                    <div class="flex gap-2 mb-4">
+                        <input type="text" id="ingredient-input" class="flex-grow p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none transition" placeholder="e.g., Lentils, Spinach...">
+                        <button id="add-ingredient-btn" class="bg-emerald-500 text-white px-6 py-3 font-semibold rounded-lg hover:bg-emerald-600 transition-all shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50">Add</button>
+                    </div>
+                    <ul id="ingredient-list" class="space-y-2 h-48 overflow-y-auto custom-scrollbar pr-2">
+                        <!-- Ingredients will be dynamically added here -->
+                    </ul>
+                </section>
+
+                <!-- Nutritional Goals Section -->
+                <section class="bg-white p-6 rounded-2xl shadow-md">
+                    <h2 class="text-2xl font-semibold mb-4 text-slate-700">Nutritional Goals</h2>
+                    <div id="nutritional-goals" class="space-y-3">
+                        <label class="flex items-center space-x-3 text-lg text-slate-600">
+                            <input type="checkbox" value="High Protein" class="h-5 w-5 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500">
+                            <span>High Protein</span>
+                        </label>
+                        <label class="flex items-center space-x-3 text-lg text-slate-600">
+                            <input type="checkbox" value="High Fiber" class="h-5 w-5 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500">
+                            <span>High Fiber</span>
+                        </label>
+                        <label class="flex items-center space-x-3 text-lg text-slate-600">
+                            <input type="checkbox" value="High Calcium" class="h-5 w-5 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500">
+                            <span>High Calcium</span>
+                        </label>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Meal Plan -->
+            <div class="flex flex-col">
+                <section class="bg-white p-6 rounded-2xl shadow-md flex-grow flex flex-col">
+                    <h2 class="text-2xl font-semibold mb-4 text-slate-700">Recipe Suggestions</h2>
+                    <button id="generate-plan-btn" class="w-full bg-indigo-600 text-white py-3 px-6 font-semibold rounded-lg hover:bg-indigo-700 transition-all shadow hover:shadow-lg mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">Generate Recipes</button>
+                    <div id="meal-plan-display" class="h-full overflow-y-auto custom-scrollbar pr-2 flex-grow">
+                        <p class="text-slate-500 text-center mt-4">Your generated recipes will appear here.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- DOM ELEMENT REFERENCES ---
+        const ingredientInput = document.getElementById('ingredient-input');
+        const addIngredientBtn = document.getElementById('add-ingredient-btn');
+        const ingredientList = document.getElementById('ingredient-list');
+        const generatePlanBtn = document.getElementById('generate-plan-btn');
+        const mealPlanDisplay = document.getElementById('meal-plan-display');
+        const nutritionalGoalsContainer = document.getElementById('nutritional-goals');
+
+        // --- APP STATE (NO FIREBASE) ---
+        let ingredients = [];
+
+        // --- UI RENDERING & EVENT HANDLERS ---
+        function renderIngredients() {
+            ingredientList.innerHTML = '';
+            if (ingredients.length === 0) {
+                ingredientList.innerHTML = `<li class="text-slate-400 italic">Your kitchen is empty.</li>`;
+                return;
+            }
+            ingredients.forEach((ingredient, index) => {
+                const li = document.createElement('li');
+                li.className = 'new-item flex justify-between items-center bg-slate-100 p-2 rounded-lg';
+                li.innerHTML = `
+                    <span>${ingredient}</span>
+                    <button data-index="${index}" class="remove-btn text-red-500 hover:text-red-700 font-bold text-xl">&times;</button>
+                `;
+                ingredientList.appendChild(li);
+            });
+        }
+
+        function handleAddIngredient() {
+            const ingredientName = ingredientInput.value.trim();
+            if (ingredientName && !ingredients.includes(ingredientName)) {
+                ingredients.push(ingredientName);
+                ingredientInput.value = '';
+                renderIngredients();
+            }
+        }
+
+        function handleRemoveIngredient(index) {
+            ingredients.splice(index, 1);
+            renderIngredients();
+        }
+        
+        function renderMealPlanCards(data) {
+            mealPlanDisplay.innerHTML = '';
+            if (!data || !data.recipes || data.recipes.length === 0) {
+                mealPlanDisplay.innerHTML = `<p class="text-orange-600">Sorry, I couldn't generate recipes. Try different ingredients!</p>`;
+                return;
+            }
+
+            const cardsContainer = document.createElement('div');
+            cardsContainer.className = 'space-y-3';
+
+            data.recipes.forEach(recipe => {
+                const card = document.createElement('div');
+                card.className = 'new-item recipe-card bg-white rounded-lg overflow-hidden shadow-sm border border-slate-200 transition-all';
+                
+                const ingredientsHtml = recipe.ingredients_list.map(ing => `<li>${ing}</li>`).join('');
+                const instructionsHtml = recipe.instructions.replace(/\n/g, '<br>');
+                const searchQuery = encodeURIComponent(`${recipe.recipe_name} vegetarian recipe`);
+
+                card.innerHTML = `
+                    <div class="recipe-summary p-4 cursor-pointer flex justify-between items-center">
+                        <h3 class="text-lg font-bold text-slate-800">${recipe.recipe_name}</h3>
+                        <svg class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="recipe-details px-4">
+                        <div class="prose prose-sm max-w-none">
+                            <h4 class="font-semibold">Ingredients:</h4>
+                            <ul class="list-disc list-inside">${ingredientsHtml}</ul>
+                            <h4 class="font-semibold mt-4">Instructions:</h4>
+                            <p>${instructionsHtml}</p>
+                        </div>
+                        <a href="https://www.google.com/search?q=${searchQuery}" target="_blank" rel="noopener noreferrer" class="mt-4 mb-4 inline-block bg-slate-100 text-slate-600 px-3 py-2 font-semibold rounded-lg hover:bg-slate-200 transition-all text-sm">
+                            Search for this recipe
+                        </a>
+                    </div>
+                `;
+                cardsContainer.appendChild(card);
+            });
+            mealPlanDisplay.appendChild(cardsContainer);
+        }
+
+        // --- GEMINI API CALL ---
+        async function generateMealPlan() {
+            if (ingredients.length === 0) {
+                mealPlanDisplay.innerHTML = `<p class="text-orange-600">Please add some ingredients first!</p>`;
+                return;
+            }
+
+            // *** IMPORTANT: PASTE YOUR API KEY HERE ***
+            const apiKey = "AIzaSyA4XE8Gb7oxY9dKFbo5kQJldPFYG3n1QFI";
+
+            if (apiKey === "AIzaSyA4XE8Gb7oxY9dKFbo5kQJldPFYG3n1QFI") {
+                 mealPlanDisplay.innerHTML = `<p class="text-red-600 font-bold">ERROR: You must add your Gemini API key to the code before deploying.</p>`;
+                 return;
+            }
+
+            const selectedGoals = Array.from(nutritionalGoalsContainer.querySelectorAll('input:checked')).map(cb => cb.value).join(', ');
+            
+            mealPlanDisplay.innerHTML = `
+                <div class="flex items-center justify-center h-full">
+                    <div class="text-center">
+                        <svg class="animate-spin h-8 w-8 text-indigo-600 mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                        <p class="text-slate-500 font-medium">Generating recipes...</p>
+                    </div>
+                </div>`;
+            generatePlanBtn.disabled = true;
+            generatePlanBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            const goalText = selectedGoals ? `that is ${selectedGoals}` : '';
+            const prompt = `Suggest three distinct pure vegetarian recipes ${goalText} that feature the key ingredients: ${ingredients.join(', ')}. Assume common kitchen staples are available. For each recipe, provide the name, a complete list of ingredients, and step-by-step instructions. Return this data as a valid JSON object only, with the exact structure: { "recipes": [ { "recipe_name": "...", "ingredients_list": ["...", "..."], "instructions": "1. First step..." } ] }`;
+            
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ role: "user", parts: [{ text: prompt }] }],
+                generationConfig: { responseMimeType: "application/json" }
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error(`API request failed: ${response.statusText}`);
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0) {
+                    const rawText = result.candidates[0].content.parts[0].text;
+                    const startIndex = rawText.indexOf('{');
+                    const endIndex = rawText.lastIndexOf('}');
+                    
+                    if (startIndex === -1 || endIndex === -1) throw new Error("A valid JSON object was not found.");
+                    
+                    const jsonText = rawText.substring(startIndex, endIndex + 1);
+                    const data = JSON.parse(jsonText);
+                    renderMealPlanCards(data);
+                } else {
+                    throw new Error("No content received from API.");
+                }
+
+            } catch (error) {
+                console.error("Error calling Gemini API or parsing JSON:", error);
+                mealPlanDisplay.innerHTML = `<p class="text-red-600">Sorry, something went wrong. Please try again. Error: ${error.message}</p>`;
+            } finally {
+                generatePlanBtn.disabled = false;
+                generatePlanBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        // --- EVENT LISTENERS ---
+        addIngredientBtn.addEventListener('click', handleAddIngredient);
+        ingredientInput.addEventListener('keypress', (e) => e.key === 'Enter' && handleAddIngredient());
+        ingredientList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-btn')) {
+                handleRemoveIngredient(parseInt(e.target.dataset.index, 10));
+            }
+        });
+        generatePlanBtn.addEventListener('click', generateMealPlan);
+
+        mealPlanDisplay.addEventListener('click', (e) => {
+            const summary = e.target.closest('.recipe-summary');
+            if (summary) {
+                const card = summary.closest('.recipe-card');
+                document.querySelectorAll('.recipe-card.open').forEach(openCard => {
+                    if (openCard !== card) {
+                        openCard.classList.remove('open');
+                        openCard.querySelector('svg').classList.remove('rotate-180');
+                    }
+                });
+                card.classList.toggle('open');
+                card.querySelector('svg').classList.toggle('rotate-180');
+            }
+        });
+        
+        // Initial render of the empty kitchen
+        renderIngredients();
+
+    </script>
 </body>
 </html>
